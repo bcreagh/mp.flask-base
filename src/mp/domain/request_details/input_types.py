@@ -1,0 +1,3 @@
+JSON = 'JSON'
+TEXT = 'TEXT'
+NONE = 'NONE'
