@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Hello World",
+        "description": "A simple hello world example",
+        "route": "hello-world",
+        "instructions": "Enter something (for example, your name) and see what happens!",
+        "readme": {
+            "data": ""
+        },
+        "examples": [],
+        "requestDetails": {
+            "httpMethod": "POST",
+            "inputType": "TEXT",
+            "inputTemplate": "Brian"
+        }
+    }
+]
