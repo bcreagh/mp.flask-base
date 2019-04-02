@@ -17,9 +17,9 @@ class Stopwatch:
         if not self.stopwatch_has_started:
             raise Exception('You cannot stop the stopwatch if it has not yet been started!')
         current_time = Stopwatch.get_current_time()
-        time_elapled = (current_time - self.start_time).total_seconds() * 1000000
+        time_elapsed = (current_time - self.start_time).total_seconds() * 1000000
         self.stopwatch_has_started = False
-        return time_elapled
+        return time_elapsed
 
     @staticmethod
     def get_current_time():
