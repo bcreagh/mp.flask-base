@@ -6,6 +6,7 @@ from mp.utilities.stopwatch import Stopwatch
 from services.action_service import ActionService
 from services.config_service import ConfigService
 import services.json_service as json_service
+import services.route_service as route_service
 from mp.domain.action_result import ActionResult
 import app
 
@@ -22,7 +23,7 @@ def get_hello_world():
     if request.method == 'POST':
         return hello_world_post()
     if request.method == 'OPTIONS':
-        return hello_world_options()
+        return route_service.handle_options()
 
 
 def hello_world_get():
@@ -42,14 +43,27 @@ def hello_world_post():
     Logger.log('Handling the POST request', result)
     stopwatch.start()
     result.input = user_input
-    result.output = 'Hello from python, {}'.format(user_input)
+    result.output = 'Hello from python {}'.format(user_input)
     performance = stopwatch.stop()
     result.performance = performance
     response = Response(json_service.to_json(result), mimetype='application/json')
     return response
 
 
-def hello_world_options():
-    options = {'Allow': 'POST'}, 200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'PUT,GET'}
-    response = Response(json_service.to_json(options), mimetype='application/json')
-    return response
+@blueprint.route('/{}/hello-world/with-route'.format(service_name), methods=['POST', 'OPTIONS'])
+def with_route():
+    if request.method == 'OPTIONS':
+        return route_service.handle_options()
+    if request.method == 'POST':
+        result = ActionResult()
+        stopwatch = Stopwatch()
+        user_input = '- this response is from the "with-route" route!'
+
+        Logger.log('Handling the POST request', result)
+        stopwatch.start()
+        result.input = user_input
+        result.output = 'Hello from python {}'.format(user_input)
+        performance = stopwatch.stop()
+        result.performance = performance
+        response = Response(json_service.to_json(result), mimetype='application/json')
+        return response
