@@ -1,7 +1,9 @@
 from flask import Flask
+from flask_cors import CORS
 
 _blueprint_list = []
 flask_app = Flask(__name__)
+CORS(flask_app)
 
 
 def add_blueprint_to_list(blueprint):

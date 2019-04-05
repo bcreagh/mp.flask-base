@@ -7,7 +7,18 @@
         "readme": {
             "data": ""
         },
-        "examples": [],
+        "examples": [
+            {
+                "name": "With own route",
+                "hasOwnRoute": true,
+                "route": "with-route"
+            },
+            {
+                "name": "Without own route",
+                "hasOwnRoute": false,
+                "input": "- this example uses the default hello-world route!"
+            }
+        ],
         "requestDetails": {
             "httpMethod": "POST",
             "inputType": "TEXT",
